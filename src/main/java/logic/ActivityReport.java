@@ -86,15 +86,14 @@ public class ActivityReport {
             }
           });
 
-      tempMap.entrySet().stream()
-          .forEach(
-              entry ->
-                  LOGGER.info(
-                      "Max number of new friendships from month to month -"
-                          + " yyyy-MM: "
-                          + entry.getKey()
-                          + ", Max number of new friendships: "
-                          + entry.getValue()));
+      tempMap.forEach(
+          (key, value) ->
+              LOGGER.info(
+                  "Max number of new friendships from month to month -"
+                      + " yyyy-MM: "
+                      + key
+                      + ", Max number of new friendships: "
+                      + value));
     } catch (Exception e) {
       LOGGER.error(e);
     }

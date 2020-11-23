@@ -15,6 +15,9 @@ public class CassandraConnection {
   private static Cluster cluster;
   private static Session session;
 
+  private CassandraConnection() {
+  }
+
   public static Session getSession() {
     Properties propCassandra = new Properties();
     try (InputStream input = new FileInputStream("src/main/resources/cassandra.properties")) {

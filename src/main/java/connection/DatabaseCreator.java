@@ -15,6 +15,9 @@ public class DatabaseCreator {
   private static final String TABLE_NAME_USERS = "sntask5.users";
   private static final String TABLE_NAME_FRIENDSHIPS = "sntask5.friendships";
   private static final String TABLE_NAME_MESSAGES = "sntask5.messages";
+  public static final String TABLE_CREATED = "Table created - ";
+  public static final String CREATE_TABLE_IF_NOT_EXISTS = "CREATE TABLE IF NOT EXISTS ";
+  public static final String CREATE_ID_CQL = "id bigint PRIMARY KEY, ";
 
   private DatabaseCreator() {
   }
@@ -62,10 +65,10 @@ public class DatabaseCreator {
   public static void createTableMovies() {
     Session session = CassandraConnection.getSession();
     StringBuilder sb =
-        new StringBuilder("CREATE TABLE IF NOT EXISTS ")
+        new StringBuilder(CREATE_TABLE_IF_NOT_EXISTS)
             .append(TABLE_NAME_MOVIES)
             .append("(")
-            .append("id bigint PRIMARY KEY, ")
+            .append(CREATE_ID_CQL)
             .append("title text,")
             .append("country text,")
             .append("year date);");
@@ -73,16 +76,16 @@ public class DatabaseCreator {
     String query = sb.toString();
     session.execute(query);
     CassandraConnection.closeSession();
-    LOGGER.info("Table created - " + TABLE_NAME_MOVIES);
+    LOGGER.info(TABLE_CREATED + TABLE_NAME_MOVIES);
   }
 
   public static void createTableAudioTracks() {
     Session session = CassandraConnection.getSession();
     StringBuilder sb =
-        new StringBuilder("CREATE TABLE IF NOT EXISTS ")
+        new StringBuilder(CREATE_TABLE_IF_NOT_EXISTS)
             .append(TABLE_NAME_AUDIO_TRACKS)
             .append("(")
-            .append("id bigint PRIMARY KEY, ")
+            .append(CREATE_ID_CQL)
             .append("title text,")
             .append("author text,")
             .append("album text,")
@@ -90,16 +93,16 @@ public class DatabaseCreator {
     String query = sb.toString();
     session.execute(query);
     CassandraConnection.closeSession();
-    LOGGER.info("Table created - " + TABLE_NAME_AUDIO_TRACKS);
+    LOGGER.info(TABLE_CREATED + TABLE_NAME_AUDIO_TRACKS);
   }
 
   public static void createTableUsers() {
     Session session = CassandraConnection.getSession();
     StringBuilder sb =
-        new StringBuilder("CREATE TABLE IF NOT EXISTS ")
+        new StringBuilder(CREATE_TABLE_IF_NOT_EXISTS)
             .append(TABLE_NAME_USERS)
             .append("(")
-            .append("id bigint PRIMARY KEY, ")
+            .append(CREATE_ID_CQL)
             .append("name text,")
             .append("surname text,")
             .append("birthdate date,")
@@ -109,13 +112,13 @@ public class DatabaseCreator {
     session.execute(query);
     CassandraConnection.closeSession();
 
-    LOGGER.info("Table created - " + TABLE_NAME_USERS);
+    LOGGER.info(TABLE_CREATED + TABLE_NAME_USERS);
   }
 
   public static void createTableFriendships() {
     Session session = CassandraConnection.getSession();
     StringBuilder sb =
-        new StringBuilder("CREATE TABLE IF NOT EXISTS ")
+        new StringBuilder(CREATE_TABLE_IF_NOT_EXISTS)
             .append(TABLE_NAME_FRIENDSHIPS)
             .append("(")
             .append("userid bigint PRIMARY KEY,")
@@ -124,13 +127,13 @@ public class DatabaseCreator {
     String query = sb.toString();
     session.execute(query);
     CassandraConnection.closeSession();
-    LOGGER.info("Table created - " + TABLE_NAME_FRIENDSHIPS);
+    LOGGER.info(TABLE_CREATED + TABLE_NAME_FRIENDSHIPS);
   }
 
   public static void createTableMessages() {
     Session session = CassandraConnection.getSession();
     StringBuilder sb =
-        new StringBuilder("CREATE TABLE IF NOT EXISTS ")
+        new StringBuilder(CREATE_TABLE_IF_NOT_EXISTS)
             .append(TABLE_NAME_MESSAGES)
             .append("(")
             .append("id bigint PRIMARY KEY,")
@@ -141,6 +144,6 @@ public class DatabaseCreator {
     String query = sb.toString();
     session.execute(query);
     CassandraConnection.closeSession();
-    LOGGER.info("Table created - " + TABLE_NAME_MESSAGES);
+    LOGGER.info(TABLE_CREATED + TABLE_NAME_MESSAGES);
   }
 }
