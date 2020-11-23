@@ -1,0 +1,5 @@
+docker run --name cassandra1 --network cassandra-cluster -d cassandra
+docker exec -it cassandra1 cqlsh
+
+create keyspace sntask5
+   ... WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
