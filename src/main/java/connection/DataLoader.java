@@ -38,8 +38,8 @@ public class DataLoader {
   private DataLoader() {}
 
   public static void executeLoading() {
-    //    loadMovies(BATCH_SIZE, NUMBER_OF_MOVIES);
-    //    loadAudioTracks(BATCH_SIZE, NUMBER_AUDIO_TRACKS);
+    loadMovies(BATCH_SIZE, NUMBER_OF_MOVIES);
+    loadAudioTracks(BATCH_SIZE, NUMBER_AUDIO_TRACKS);
     loadUsers(BATCH_SIZE, NUMBER_OF_USERS, NUMBER_OF_MOVIES, NUMBER_AUDIO_TRACKS);
     loadFriendships(BATCH_SIZE, NUMBER_FRIENDSHIPS, NUMBER_OF_USERS);
     loadMessages(BATCH_SIZE, NUMBER_MESSAGES, NUMBER_OF_USERS);
