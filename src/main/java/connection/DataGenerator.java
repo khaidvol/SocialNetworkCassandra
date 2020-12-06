@@ -11,12 +11,13 @@ public class DataGenerator {
 
   public static final String SUCCESS = "List generated successfully!";
   private static final Logger LOGGER = Logger.getLogger(DataGenerator.class);
-  private static Random rm = new Random();
+  private static final Random rm = new Random();
 
   private DataGenerator() {}
 
   public static List<User> generateUsers(
       long startUsersId, long endUsersId, long maxMovieId, long maxAudioTrackId) {
+
     LOGGER.info("Generating list of users...");
     List<User> users = new ArrayList<>();
 
@@ -115,21 +116,30 @@ public class DataGenerator {
 
   /** Generators for words, numbers, dates */
   private static String generateRandomString() {
+
     String randomString;
     String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    int maxBound = 20;
+    int minBound = 3;
+
     StringBuilder sb = new StringBuilder();
-    int lengthOfBuiltString = rm.nextInt(20 - 3) + 3;
+    int lengthOfBuiltString = rm.nextInt(maxBound - minBound) + minBound;
+
     for (int n = 0; n < lengthOfBuiltString; n++) {
       int index = rm.nextInt(alphabet.length());
       char randomChar = alphabet.charAt(index);
       sb.append(randomChar);
     }
+
     randomString = sb.toString();
+
     return randomString;
   }
 
   private static List<Long> generateRandomLongs(int amount, long max) {
+
     Set<Long> set = new HashSet<>();
+
     while (set.size() < amount) {
       set.add(ThreadLocalRandom.current().nextLong(1, max));
     }
@@ -137,10 +147,12 @@ public class DataGenerator {
   }
 
   private static Date generateRandomDate(int fromDate, int toDate) {
+
     long aDay = TimeUnit.DAYS.toMillis(1);
     long now = new Date().getTime();
     long start = new Date(now - aDay * 365 * (2020 - fromDate)).getTime();
     long end = new Date(now - aDay * 365 * (2020 - toDate)).getTime();
+
     return new Date(ThreadLocalRandom.current().nextLong(start, end));
   }
 }
